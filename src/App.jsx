@@ -7,37 +7,35 @@ function App() {
   const [imageSrc, setImageSrc] = useState(
     "https://bulma.io/assets/images/placeholders/256x256.png"
   );
-  const [randomExercise, setrandomExercise] = useState([]);
 
   function selectRandomExercise(exerciseData) {
-    const randomIndex = Math.floor(Math.random * exerciseData.length);
+    const randomIndex = Math.floor(Math.random() * exerciseData.length);
     return exerciseData[randomIndex];
   }
 
+  const fetchGif = async () => {
+    try {
+      const response = await fetch(
+        "https://exercisedb.p.rapidapi.com/exercises?limit=0&offset=0",
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+            "x-rapidapi-key":
+              "74afa71158msh9ebed41333ad41bp1495b1jsn6219fbf3e639",
+          },
+        }
+      );
+      const data = await response.json();
+      const exercise = selectRandomExercise(data);
+      setImageSrc(exercise.gifUrl);
+    } catch (error) {
+      console.error("Error fetching the GIF:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchGif = async () => {
-      try {
-        const response = await fetch(
-          "https://exercisedb.p.rapidapi.com/exercises?limit=0&offset=0",
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-              "x-rapidapi-key":
-                "74afa71158msh9ebed41333ad41bp1495b1jsn6219fbf3e639",
-            },
-          }
-        );
-        const data = await response.json();
-        setrandomExercise(selectRandomExercise(data).gifUrl);
-        setImageSrc(setrandomExercise);
-      } catch (error) {
-        console.error("Error fetching the GIF:", error);
-      }
-    };
-
     fetchGif();
-
   }, []);
 
   return (
@@ -68,7 +66,7 @@ function App() {
               <div className="buttons">
                 <button className="button is-danger" onClick={fetchGif}>
                   <span className="icon">
-                    <i class="fa-solid fa-recycle" id="rand-btn"></i>
+                    <i className="fa-solid fa-recycle" id="rand-btn"></i>
                   </span>
                   <span>Get a random exercise</span>
                 </button>
@@ -84,7 +82,7 @@ function App() {
         </div>
       </nav>
       <figure>
-        <img src={imageSrc} />
+        <img src={imageSrc} alt="Random Exercise" />
       </figure>
     </>
   );
