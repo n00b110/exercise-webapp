@@ -37,14 +37,19 @@ function Home() {
   }, []);
 
   return (
-    <>
+    <div className="has-background-grey">
       <nav className="navbar">
         <div className="navbar-brand">
           <span className="icon-text">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 640 512"
+              width="40"
+              height="40"
+            >
               <path d="M96 64c0-17.7 14.3-32 32-32l32 0c17.7 0 32 14.3 32 32l0 160 0 64 0 160c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-64-32 0c-17.7 0-32-14.3-32-32l0-64c-17.7 0-32-14.3-32-32s14.3-32 32-32l0-64c0-17.7 14.3-32 32-32l32 0 0-64zm448 0l0 64 32 0c17.7 0 32 14.3 32 32l0 64c17.7 0 32 14.3 32 32s-14.3 32-32 32l0 64c0 17.7-14.3 32-32 32l-32 0 0 64c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-160 0-64 0-160c0-17.7 14.3-32 32-32l32 0c17.7 0 32 14.3 32 32zM416 224l0 64-192 0 0-64 192 0z" />
             </svg>
-            <span>FitFlicker</span>
+            <span class="ml-2">FitFlicker</span>
           </span>
           <a
             role="button"
@@ -84,7 +89,7 @@ function Home() {
       <figure className="is-flex is-justify-content-center is-align-items-center">
         <img src={imageSrc} />
       </figure>
-    </>
+    </div>
   );
 }
 
