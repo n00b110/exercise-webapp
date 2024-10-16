@@ -4,8 +4,9 @@ import "bulma/css/bulma.min.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 
 function App() {
+  const apiKey = import.meta.env.VITE_API_KEY
   const [imageSrc, setImageSrc] = useState(
-    "https://bulma.io/assets/images/placeholders/256x256.png"
+    ""
   );
 
   function selectRandomExercise(exerciseData) {
@@ -21,18 +22,20 @@ function App() {
           method: "GET",
           headers: {
             "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-            "x-rapidapi-key":
-              "74afa71158msh9ebed41333ad41bp1495b1jsn6219fbf3e639",
+            "x-rapidapi-key": apiKey,
           },
         }
       );
       const data = await response.json();
+      console.log(data);
       const exercise = selectRandomExercise(data);
       setImageSrc(exercise.gifUrl);
     } catch (error) {
       console.error("Error fetching the GIF:", error);
     }
   };
+
+  
 
   useEffect(() => {
     fetchGif();
@@ -44,7 +47,7 @@ function App() {
         <div className="navbar-brand">
           <span className="icon-text">
             <i className="fa-solid fa-dumbbell"></i>
-            <h1>FitFlicker</h1>
+            <span>FitFlicker</span>
           </span>
           <a
             role="button"
@@ -82,7 +85,7 @@ function App() {
         </div>
       </nav>
       <figure>
-        <img src={imageSrc} alt="Random Exercise" />
+        <img src={imageSrc} />
       </figure>
     </>
   );
