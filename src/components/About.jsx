@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 
 function About() {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -33,11 +34,10 @@ function About() {
   useEffect(() => {
     fetchExerciseInfo()
   }, []);
+
+  return NaN
 }
 
 
-return (
-    div.
-)
 
 export default About;

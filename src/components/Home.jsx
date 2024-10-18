@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "bulma/css/bulma.min.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 
@@ -69,18 +70,21 @@ function Home() {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
+                <Link to="/workout-list" className="button is-link">
+                  <span>Workout List</span>
+                </Link>
                 <button className="button is-danger" onClick={fetchGif}>
                   <span className="icon">
                     <i className="fa-solid fa-recycle" id="rand-btn"></i>
                   </span>
                   <span>Get a random exercise</span>
                 </button>
-                <a href="" className="button is-primary">
+                <Link to="" className="button is-primary">
                   <span>Sign Up</span>
-                </a>
-                <a href="" className="button is-info">
+                </Link>
+                <Link to="" className="button is-info">
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </div>

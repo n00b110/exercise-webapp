@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function WorkoutList() {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -28,15 +28,23 @@ function WorkoutList() {
       console.error("Error fetching the GIF:", error);
     }
   };
-}
 
+  useEffect(() => {
+    fetchExerciseInfo();
+  })
 
-return (
-
+  return (
     <table>
-        
+      <thead>
+        {Object.keys(data).forEach(header => {
+          <tr>
+            <th>{header}</th>
+          </tr>
+        })}
+      </thead>
+      <tbody>
+      </tbody>
     </table>
-    
-)
-
+  )
+}
 export default WorkoutList;
