@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function WorkoutList() {
   const apiKey = import.meta.env.VITE_API_KEY;
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
 
   function selectRandomExercise(exerciseData) {
     const randomIndex = Math.floor(Math.random() * exerciseData.length);
@@ -31,12 +31,13 @@ function WorkoutList() {
 
   useEffect(() => {
     fetchExerciseInfo();
-  })
+  }, [])
 
   return (
+
     <table>
       <thead>
-        {Object.keys(data).forEach(header => {
+        {Object.keys(data).map(header => {
           <tr>
             <th>{header}</th>
           </tr>
